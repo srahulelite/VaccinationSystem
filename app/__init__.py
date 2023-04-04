@@ -6,6 +6,9 @@ app.config["SECRET_KEY"] = '571ebfo2784rjsd'
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///doctor_patient_info.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
 
-from app import views
+db = SQLAlchemy(app)
 
 app.config.from_object('config')
+
+from app import views
+from app import models
