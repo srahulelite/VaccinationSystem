@@ -6,25 +6,27 @@
 {% block content %}
     <h1>Welcome to Vaccinaion</h1>
     <p>Register or Login here !</p>
-    <form>
+    <form action="/patients" method="POST" >
         <label>Name </label>
-        <input type="text" name="name">
+        <input type="text" name="name" required>
         <label>Email Address </label>
-        <input type="email" name="email-address">
+        <input type="email" name="email-address" required>
         <label>ID number </label>
-        <input type="text" name="id-number">
+        <input type="text" name="id-number" required>
         <label>Password </label>
-        <input type="password" name="password">
+        <input type="password" name="password" required>
         <input type="submit">
     </form>
-    <form>
+    <br>
+    <form action="/patients" method="POST" >
         <label>Email Address </label>
-        <input type="email" name="email-address">
+        <input type="email" name="email-add" required>
         <label>Password </label>
-        <input type="password" name="password">
+        <input type="password" name="pass" required>
         <input type="submit">
     </form>
 {% endblock %}
 
 {% block footer %}
+    {{ super() }}
 {% endblock %}
