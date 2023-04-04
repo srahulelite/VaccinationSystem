@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} Welcome to Vaccination {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Welcome to Vaccinaion</h1>
+    <p>Register or Login here !</p>
+    <form>
+        <label>Name </label>
+        <input type="text" name="name" required>
+    </form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
