@@ -20,15 +20,15 @@ def register_doctor():
     db.session.commit()
     return 'Successfully Registered'
 
-@app.route('/login-doctor')
+@app.route('/login-doctor', methods=['POST'])
 def individual_patient():
     form = request.form
-    doctor = Doctor.query.filter_by(email=form['email-address']).first()
-    if doctor.check_password(form['password']):
+    doctor = Doctor.query.filter_by(email=form['email-add']).first()
+    if doctor.check_password(form['pass']):
         return redirect (url_for('patients'))
     else:
         return 'Error'
     
-@app.route('/patients', methods=['POST'])
+@app.route('/patients', methods=['POST', 'GET'])
 def patients():
     return 'Successfully Logged in'
