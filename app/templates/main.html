@@ -6,11 +6,11 @@
 {% block content %}
     <h1>Welcome to Vaccinaion</h1>
     <p>Register or Login here !</p>
-    <form action="/register-doctor" method="POST" >
+    <form name="registration-form" action="/register-doctor" method="POST" >
         <label>Name </label>
         <input type="text" name="name" required>
         <label>Email Address </label>
-        <input type="email" name="email-address" required>
+        <input type="email" onfocusout="checkIfUserExists(event)" name="email-address" required>
         <label>ID number </label>
         <input type="text" name="id-number" required>
         <label>Password </label>
@@ -30,7 +30,7 @@
         <input type="password" name="pass" required>
         <input type="submit">
     </form>
-    <script src="{{url_for('static', filename='js/validation-users.js')}}"></script>
+    <script src="{{url_for('static', filename='js/validate-users.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     </script>
 {% endblock %}

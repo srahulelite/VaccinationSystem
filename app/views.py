@@ -1,5 +1,5 @@
 from app import app, db
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, jsonify
 from app.models import Doctor
 
 @app.route('/')
@@ -19,6 +19,17 @@ def register_doctor():
     db.session.add(doctor)
     db.session.commit()
     return 'Successfully Registered'
+
+@app.route('/validate-doctor-registration', methods=['POST'])
+def validate_doctor_registration():
+    if request.method == "POST":
+        email_address = request.get_json()['email']
+        doctor = Doctor.query.filter_by(email=email_address).first()
+        if doctor:
+            return jsonify({"user_exists": "true"})
+        else:
+            return jsonify({"user_exists": "false"})
+    return 
 
 @app.route('/login-doctor', methods=['POST'])
 def individual_patient():
