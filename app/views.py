@@ -1,5 +1,5 @@
 from app import app, db
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from app.models import Doctor
 
 @app.route('/')
@@ -22,4 +22,13 @@ def register_doctor():
 
 @app.route('/login-doctor')
 def individual_patient():
-    return 'Individual Patient'
+    form = request.form
+    doctor = Doctor.query.filter_by(email=form['email-address']).first()
+    if doctor.check_password(form['password']):
+        return redirect (url_for('patients'))
+    else:
+        return 'Error'
+    
+@app.route('/patients', methods=['POST'])
+def patients():
+    return 'Successfully Logged in'
