@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash, jsonify, session
-from app.models import Doctor
+from app.models import Doctor, Patient
 
 @app.route('/')
 def index():
@@ -57,3 +57,23 @@ def patients():
     if session['doctor']:
         doctor_id = session['doctor']
     return render_template('patients.html')
+
+@app.route('/patient-register', methods=['POST'])
+def register_patient():
+    form = request.form
+    email = form['email-address']
+    patient = Patient.query.filter_by(email=email).first()
+    if not patient:
+        patient = Patient(
+            name = form['name'],
+            email = email,
+            phone_number = form['phone-number'],
+            doctor_id = session['doctor']
+        )
+        db.session(patient)
+        db.session.commit()
+        flash('Patient successfully Registered')
+        return redirect(url_for('patients'))
+    else:
+        flash('Patient already exists')
+        return redirect(url_for('patients'))
