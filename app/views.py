@@ -56,6 +56,9 @@ def patients():
     doctor_id = None
     if session['doctor']:
         doctor_id = session['doctor']
+        #Get a list of patient already registered
+        patients = Patient.query.filter_by(doctor_id=doctor_id)
+        return render_template('patients.html', patients=patients)
     return render_template('patients.html')
 
 @app.route('/patient-register', methods=['POST'])

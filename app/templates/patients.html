@@ -14,4 +14,10 @@
         <input type="text" name="phone-number" required>
         <input type="submit">
     </form>
+    <hr>
+    <div id="patient-list">
+        {% for patient in patients %}
+            <p>{{patient.name}}</p><p>{{patient.email}}</p><p>{{patient.phone_number}}</p>
+        {% endfor %}
+    </div>
 {% endblock %}
