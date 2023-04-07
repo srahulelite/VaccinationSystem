@@ -15,9 +15,19 @@
         <input type="submit">
     </form>
     <hr>
-    <div id="patient-list">
-        {% for patient in patients %}
-            <p>{{patient.name}}</p><p>{{patient.email}}</p><p>{{patient.phone_number}}</p>
-        {% endfor %}
+    <div id="patient-list" >
+        <table border="1px">
+            <tr>
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Patient Email</th>
+                <th>Patient Phone Number</th>
+            </tr>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{patient.id}}</td><td>{{patient.name}}</td><td>{{patient.email}}</td><td>{{patient.phone_number}}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </div>
 {% endblock %}
