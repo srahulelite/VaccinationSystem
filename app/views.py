@@ -1,5 +1,5 @@
 from app import app, db
-from flask import render_template, request, redirect, url_for, jsonify
+from flask import render_template, request, redirect, url_for, flash, jsonify, session
 from app.models import Doctor
 
 @app.route('/')
@@ -35,11 +35,25 @@ def validate_doctor_registration():
 def individual_patient():
     form = request.form
     doctor = Doctor.query.filter_by(email=form['email-add']).first()
+    if not doctor:
+        flash("Doctor doesn't exist")
+        return redirect(url_for('index'))
+    
     if doctor.check_password(form['pass']):
+        session['doctor'] = doctor.id
         return redirect (url_for('patients'))
     else:
-        return 'Error'
+        flash("Password was incorrect")
+        return redirect(url_for('index'))
+    
+@app.route('/logout-doctor', methods=['GET', 'POST'])
+def logout_doctor():
+    session.pop('doctor', None)
+    return redirect(url_for('index'))
     
 @app.route('/patients', methods=['POST', 'GET'])
 def patients():
-    return 'Successfully Logged in'
+    doctor_id = None
+    if session['doctor']:
+        doctor_id = session['doctor']
+    return render_template('patients.html')
