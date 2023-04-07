@@ -70,7 +70,7 @@ def register_patient():
             phone_number = form['phone-number'],
             doctor_id = session['doctor']
         )
-        db.session(patient)
+        db.session.add(patient)
         db.session.commit()
         flash('Patient successfully Registered')
         return redirect(url_for('patients'))
