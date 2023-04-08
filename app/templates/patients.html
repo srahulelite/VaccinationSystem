@@ -33,7 +33,7 @@
                     <td>{{patient.email}}</td>
                     <td>{{patient.phone_number}}</td>
                     <td><button><a href="{{url_for('vaccine_record', patient_id=patient.id)}}">Update Vaccine Records</a></button></td>
-                    <td><button><a href="">Email Vaccine Certificate</a></button></td>
+                    <td><button><a  href="{{url_for('generate_certificate', patient_id=patient.id)}}">Email Vaccine Certificate</a></button></td>
                 </tr>
             {% endfor %}
         </table>
