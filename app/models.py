@@ -31,5 +31,5 @@ class Vaccine_Dose(db.Model):
     volume = db.Column(db.Integer, nullable=False)
     dose_no = db.Column(db.Integer, nullable=False)
     dose_id = db.Column(db.String(6), nullable=False)
-    dose_date = db.Column(db.DateTime(timezone=True), default=datetime.now)
+    dose_dte = db.Column(db.DateTime(timezone=True), default=datetime.now)
     patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'))

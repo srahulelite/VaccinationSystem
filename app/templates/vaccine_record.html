@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
     <a href= "{{ url_for('logout_doctor') }}" >Logout</a>
-    <a href= "{{ url_for('/') }}" >Back To Dashboard</a>
+    <a href= "{{ url_for('index') }}" >Back To Dashboard</a>
 
     <form name="vaccine-dose-registration-form" action="{{ url_for('add_vaccine_record', patient_id=patient_id) }}" method="POST" >
         <label>Type </label>
@@ -43,14 +43,14 @@
                 <th>Dose ID</th>
                 <th>Action</th>
             </tr>
-            {% for patient in patients %}
+            {% for vaccine_dose in vaccine_doses %}
                 <tr>
                     <td>{{vaccine_dose.type}}</td>
                     <td>{{vaccine_dose.volume}}</td>
                     <td>{{vaccine_dose.dose_number}}</td>
-                    <td>{{vaccine_dose.dose_date}}</td>
+                    <td>{{vaccine_dose.dose_dte}}</td>
                     <td>{{vaccine_dose.dose_id}}</td>
-                    <td><button><a href="{{url_for('delete_vaccine_record', patient_id=patient.id, vaccine_id=vaccine.dose.id)}}">Delete Vaccine Record</a></button></td>
+                    <td><button><a href="{{url_for('delete_vaccine_record', patient_id=patient_id, vaccine_id=vaccine_dose.id)}}">Delete Vaccine Record</a></button></td>
                 </tr>
             {% endfor %}
         </table>
