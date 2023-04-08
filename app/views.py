@@ -92,3 +92,7 @@ def vaccine_record(patient_id):
         if patient:
             vaccine_doses = Vaccine_Dose.filter_by(patient_id=patient_id).first()
             return render_template('vaccine_record.html', vaccine_doses=vaccine_doses, patient_id=patient_id)
+        
+app.route('/add-vaccine-record/<patient_id>', methods=['GET', 'POST'])
+def add_vaccine_record(patient_id):
+    
