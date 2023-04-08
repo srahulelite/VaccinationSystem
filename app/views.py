@@ -4,6 +4,8 @@ from app.models import Doctor, Patient
 
 @app.route('/')
 def index():
+    if 'doctor' in session.keys():
+        return redirect(url_for("patients"))
     return render_template('main.html')
 
 @app.route('/register-doctor', methods=['POST'])
