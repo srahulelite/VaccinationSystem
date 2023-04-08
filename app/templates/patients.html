@@ -28,7 +28,7 @@
             </tr>
             {% for patient in patients %}
                 <tr>
-                    <td>{{patient.id}}</td><td>{{patient.name}}</td><td>{{patient.email}}</td><td>{{patient.phone_number}}</td><td><button><a href="">Update Vaccine Records</a></button></td><td><button><a href="">Email Vaccine Certificate</a></button></td>
+                    <td>{{patient.id}}</td><td>{{patient.name}}</td><td>{{patient.email}}</td><td>{{patient.phone_number}}</td><td><button><a href="{{url_for('vaccine_record'), patient_id=patient.id}}">Update Vaccine Records</a></button></td><td><button><a href="">Email Vaccine Certificate</a></button></td>
                 </tr>
             {% endfor %}
         </table>
