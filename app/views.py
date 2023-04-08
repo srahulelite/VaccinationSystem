@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash, jsonify, session
-from app.models import Doctor, Patient
+from app.models import Doctor, Patient, Vaccine_Dose
 
 @app.route('/')
 def index():
@@ -82,3 +82,13 @@ def register_patient():
     else:
         flash('Patient already exists')
         return redirect(url_for('patients'))
+
+app.route('/vaccine-record/<patient_id>', methods=['GET', 'POST'])    
+def vaccine_record(patient_id):
+    if not patient_id:
+        return redirect(url_for('patients'))
+    else:
+        patient = Patient.query.filter_by(id=patient_id).first()
+        if patient:
+            vaccine_doses = Vaccine_Dose.filter_by(patient_id=patient_id).first()
+            return render_template('vaccine_record.html', vaccine_doses=vaccine_doses, patient_id=patient_id)
