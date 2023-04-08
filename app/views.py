@@ -181,7 +181,7 @@ def verify_vaccination_status(patient_id):
         return redirect(url_for('patients'))
     patient = Patient.query.filter_by(id=patient_id).first()
     if patient:
-        if len(patient.vaccine_doses >= 2):
+        if len(patient.vaccine_doses) >= 2:
             return "Fully Vaccinated"
         else:
             return "Not Fully Vaccinated"
