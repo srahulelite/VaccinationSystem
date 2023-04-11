@@ -104,14 +104,14 @@ def add_vaccine_record(patient_id):
     vaccine_dose = Vaccine_Dose.query.filter_by(patient_id=patient_id, dose_no = dose_number).first()
     if vaccine_dose:
         flash("This dose number has already been entered")
-        return redirect(url_for('vaccine_recrod', patient_id=patient_id))
+        return redirect(url_for('vaccine_record', patient_id=patient_id))
     vaccine_dose = Vaccine_Dose.query.filter_by(dose_id=dose_id).first()
     if vaccine_dose:
         flash("A dose with this serial number already exists in the database")
-        return redirect(url_for('vaccine_recrod', patient_id=patient_id))
+        return redirect(url_for('vaccine_record', patient_id=patient_id))
     vaccine_dose = Vaccine_Dose(
         type=form['type'],
-        volume=form['volume'],
+        volume=int(form['volume']),
         dose_no=form['dose-number'],
         dose_id=dose_id,
         patient_id=patient_id

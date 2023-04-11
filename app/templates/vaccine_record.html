@@ -20,7 +20,7 @@
         </datalist>
 
         <label>Volume</label>
-        <input type="number" name="volume" step=".01" required>
+        <input type="number" name="volume" required>
 
         <label>Dose Number </label>
         <input type="number" name="dose-number" required>
@@ -47,7 +47,7 @@
                 <tr>
                     <td>{{vaccine_dose.type}}</td>
                     <td>{{vaccine_dose.volume}}</td>
-                    <td>{{vaccine_dose.dose_number}}</td>
+                    <td>{{vaccine_dose.dose_no}}</td>
                     <td>{{vaccine_dose.dose_dte}}</td>
                     <td>{{vaccine_dose.dose_id}}</td>
                     <td><button><a href="{{url_for('delete_vaccine_record', patient_id=patient_id, vaccine_id=vaccine_dose.id)}}">Delete Vaccine Record</a></button></td>
